@@ -1,0 +1,55 @@
+﻿@model RentAcar.Models.MusteriTablo
+
+@{ 
+    Layout = "~/Views/Shared/adminPanel.cshtml";
+}
+
+<h2>Müşteri Ekleme Sayfası</h2>
+
+
+
+@using (Html.BeginForm("musteriEkle", "Musteri", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+<table>
+    <tr>
+        <td>
+            @Html.TextBoxFor(m => m.AdSoyad, new { @class = "form-control", placeholder = "Ad ve Soyad" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.EhliyetTipi, new { @class = "form-control", placeholder = "Ehliyet Tipi" })
+        </td>
+    <tr />
+    <tr>
+        <td>
+            @Html.TextBoxFor(m => m.Dogumyil, new { @class = "form-control", placeholder = "Doğum yılı", @style = "" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Email, new { @class = "form-control", placeholder = "E-Mail" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.sifre, new { @class = "form-control", placeholder = "Şifre" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.Telefon, new { @class = "form-control", placeholder = "Telefon" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.il,  new { @class = "form-control", placeholder = "ŞEHİR" })
+        </td>
+        <td>
+            @Html.TextBoxFor(m => m.ilce,  new { @class = "form-control", placeholder = "İlçe" })
+        </td> 
+        <td>
+            @Html.TextBoxFor(m => m.Adres,  new { @class = "form-control", placeholder = "Adres" })
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="submit" class="btn btn-success">Ekle</button>
+            <hr />
+            <p>@ViewBag.uyari</p>
+        </td>
+    </tr>
+</table>
+
+}
+

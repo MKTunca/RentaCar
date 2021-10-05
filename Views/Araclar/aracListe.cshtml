@@ -1,0 +1,65 @@
+﻿@model List<RentAcar.Models.AracTablo>
+@{
+    ViewBag.Title = "aracListe";
+    Layout = "~/Views/Shared/adminPanel.cshtml";
+}
+
+<h3>Araçlar Tablosu</h3>
+<hr />
+<table class="table table-bordered" id="dataTable"  cellspacing="0">
+    <thead>
+        <tr>
+            <td>ID</td>
+            <td>Marka</td>
+            <td>Model</td>
+            <td>Yakıt Türü</td>
+            <td>Vites Tipi</td>
+            <td>Plaka</td>
+            <td>Yıl</td>
+            <td>Fotoğraf</td>
+            <td>Durum</td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var arac in Model)
+        {
+        <tr id="satir_@arac.ID">
+            <td>
+                <input type="text" value="@arac.ID" class="form-control"  readonly/>
+            </td>
+            <td>
+                <input id="marka_@arac.ID" type="text" value="@arac.Marka" class="form-control" />
+            </td>
+            <td>
+                <input id="model_@arac.ID" type="text" value="@arac.Model" class="form-control" />
+            </td>
+            <td>
+                <input id="yakit_@arac.ID" type="text" value="@arac.yakit" class="form-control" />
+            </td>
+            <td>
+                <input id="vites_@arac.ID" type="text" value="@arac.Vites" class="form-control" />
+            </td>
+            <td>
+                <input id="plaka_@arac.ID" type="text" value="@arac.Plaka" class="form-control" />
+            </td>
+            <td>
+                <input id="yil_@arac.ID" type="text" value="@arac.yil" class="form-control" />
+            </td>
+            <td>
+                <img id="logo_@arac.ID" src="@arac.imaj.Replace("~","")" width="50px" />
+                <input type="file" id="imaj_@arac.ID" onchange="imajYenile(@arac.ID)" width="50px" height="50px"  />
+            </td>
+            <td>
+                @Html.DropDownList("durumlar_" + arac.ID, new SelectList(ViewBag.durumlar, "Value", "Text"), arac.durum, new { @class = "form-control" })
+            </td>
+            <td>
+                <button type="button" class="btn btn-warning" onclick="aracDegistir(@arac.ID)">Değiştir</button>
+            </td>
+            <td>
+                <button type="button" class="btn btn-danger" onclick="aracSil(@arac.ID)">Sil</button>
+            </td>
+
+        </tr>
+        }
+    </tbody>
+</table>

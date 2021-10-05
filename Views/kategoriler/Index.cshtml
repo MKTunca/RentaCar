@@ -1,0 +1,49 @@
+﻿@model List<RentAcar.Models.Akategori>
+@{
+    Layout = "~/Views/Shared/adminPanel.cshtml";
+}
+
+<body>
+    <div>
+        @using (Html.BeginForm("Index", "kategoriler", FormMethod.Post))
+        {
+            <div class="row">
+                <div class="col-md-3">
+                    <input name="aKatTanim" type="text" class="form-control" placeholder="Ana kategori yazınız..." />
+                </div>
+                <div align="left" class="col-md-2">
+                    <button type="submit" class="btn btn-success">Kaydet</button>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p style="color:red">@ViewBag.mesaj</p>
+                </div>
+            </div>
+        }
+    </div>
+    <hr />
+    <table>
+        <thead>
+            <tr>
+                <td>Tanım</td>
+                <td>Değiştir</td>
+                <td>Sil</td>
+                <td>Detay</td>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        <input type="text" value="@item.aKat" class="form-control" />
+                    </td>
+                    <td><button type="button" class="btn btn-warning">Değiştir</button></td>
+                    <td><button type="button" class="btn btn-danger">Sil</button></td>
+                    <td><a  href="/kategoriler/kategoriB/@item.ID" class="btn btn-info">Detay</a></td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</body>

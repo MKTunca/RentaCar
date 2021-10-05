@@ -1,0 +1,109 @@
+﻿@model RentAcar.Models.AracTablo
+
+@{
+    Layout = "~/Views/Shared/adminPanel.cshtml";
+}
+
+<h2>Yeni Araç Ekleme Sayfası</h2>
+<hr />
+@using (Html.BeginForm("aracEkle", "Araclar", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Marka, new { @class = "form-control", placeholder = "Marka" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Model, new { @class = "form-control", placeholder = "Model" })
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.Plaka, new { @class = "form-control", placeholder = "Plaka" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4">
+                    @*@Html.TextBoxFor(m => m.Vites, new { @class = "form-control", placeholder = "Vites Tipi", @style = "" })*@
+                    <select name="Vites" class="btn btn-primary" style="width:100%">
+                        <option value="Düz">Düz</option>
+                        <option value="Otomatik">Otomatik</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    @*@Html.TextBoxFor(m => m.yakit, new { @class = "form-control", placeholder = "Yakıt Tipi" })*@
+                    <select name="yakit" class="btn btn-warning" style="width:100%">
+                        <option value="Benzin">Benzin</option>
+                        <option value="Dizel">Dizel</option>
+                        <option value="Benzin/LPG">Benzin/LPG</option>
+                        <option value="Hibrit">Hibrit</option>
+                    </select>
+                </div>
+                <div class="col-md-4">
+                    @Html.TextBoxFor(m => m.yil, new { @class = "form-control", placeholder = "Yıl", type ="number", min="1930", max = ViewBag.maxYil, step="1" })
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+
+        <div class="col-md-8">
+            <div class="row">
+                <div class="col-md-4">
+                    <input type="file" name="dosya" id="dosya" />
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownList("aKat_id", new SelectList(ViewBag.AnaKategori, "ID", "aKat"), new { @class = "form-control", onchange = "AltKategoriSec()" })
+                </div>
+                <div class="col-md-4">
+                    @Html.DropDownList("bKat_id", new SelectList(ViewBag.AltKategori, "ID", "bKat"), new { @class = "form-control" })
+
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <div class="row" style="margin-top:15px">
+        <div class="col-md-2">
+
+        </div>
+
+        <div align="right" class="col-md-8">
+            <button type="submit" class="btn btn-success">Ekle</button>
+        </div>
+
+        <div class="col-md-2">
+
+        </div>
+    </div>
+    <p>@ViewBag.uyari</p>
+
+
+}
+

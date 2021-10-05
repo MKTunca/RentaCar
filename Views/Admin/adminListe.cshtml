@@ -1,0 +1,47 @@
+﻿@model List<RentAcar.Models.AdminTablo>
+@{
+    ViewBag.Title = "adminListe";
+    Layout = "~/Views/Shared/adminPanel.cshtml";
+}
+
+<h2>Admin Tablosu</h2>
+
+<table id="dataTable" class="table-bordered" >
+    <thead>
+        <tr>
+            <td>
+               ID
+            </td>
+            <td>
+                E-mail
+            </td>
+            <td>
+                Şifre
+            </td>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var admin in Model)
+        {
+
+            <tr id="satir_@admin.ID">
+                <td>
+                    <input  type="text" value="@admin.ID" class="form-control" readonly />
+                </td> 
+                <td>
+                    <input id="email_@admin.ID" type="text" value="@admin.Email" class="form-control" />
+                </td>
+                <td>
+                    <input id="sifre_@admin.ID" type="text" value="@admin.sifre" class="form-control" />
+                </td>
+                <td>
+                    <button type="button" class="btn btn-warning" onclick="bilgiDegis(@admin.ID)">Değiştir</button>
+                </td>
+                <td>
+                    <button type="button" class="btn btn-danger" onclick="adminSil(@admin.ID)">Sil</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
